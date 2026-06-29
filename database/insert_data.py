@@ -20,7 +20,25 @@ def insert_data(name, email, age, subject, fee):
     except Exception as e:
         print("Error: ", e)
 
+    else:
+        print("\ndata inserted successfully\n")
+
     finally:
         conn.close()
 
-insert_data("adam", "adam@example.com", 29, "python", 25000)
+
+while True:
+    choices = ["insert", "read", "update", "delete", "exit"]
+    choice = None
+
+    while choice not in choices:
+        choice = input(f"enter your choice from {", ".join(choices)} : ")
+
+    if choice == "insert":
+        name = input("enter name : ")
+        email = input("enter email : ")
+        age = int(input("enter age : "))
+        subject = input("enter subject : ")
+        fee = int(input("enter fee : "))
+
+        insert_data(name, email, age, subject, fee)
