@@ -11,7 +11,7 @@ numbers = [[5, 8, 1, 3],
            [9, 2, 7, 6], 
            [4, 0, 5, 9], 
            [3, 6, 8, 2]]
-
+ 
 rows_sum = [sum(row) for row in numbers]
 print(sorted(rows_sum, reverse=True))
 
