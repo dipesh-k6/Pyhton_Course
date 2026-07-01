@@ -14,5 +14,4 @@ def flat_array(numbers):
 
     return result
 
-
 print(flat_array(numbers))
