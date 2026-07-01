@@ -88,7 +88,7 @@ while True:
 
     # inserting value in table
     if choice == "insert":
-        try:
+        try:  
             name = input("Enter name: ")
             email = input("Enter email: ")
             age = int(input("Enter age: "))
