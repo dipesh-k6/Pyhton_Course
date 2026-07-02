@@ -56,21 +56,24 @@ def del_data(student_id):
     else:
         print(f"student with id {student_id} not found in table")
 
-    # function to update data
-    def update_data(id, field, new_value):
-        try:
-            cursor.execute(
-                f"""
+
+# function to update data
+def update_data(id, field, new_value):
+    try:
+        cursor.execute(
+            f"""
                 update student_info
                 set {field} = ?
                 where id = ?
             """,
-                (new_value, id),
-            )
-            print("\ndata updated successfully")
+            (new_value, id),
+        )
+        conn.commit()
+        print("\ndata updated successfully")
 
-        except Exception as e:
-            print("Error updating values : ", e)
+    except Exception as e:
+        print("Error updating values : ", e)
+        conn.rollback()
 
 
 while True:
@@ -88,7 +91,7 @@ while True:
 
     # inserting value in table
     if choice == "insert":
-        try:  
+        try:
             name = input("Enter name: ")
             email = input("Enter email: ")
             age = int(input("Enter age: "))
@@ -110,3 +113,21 @@ while True:
         read_data()
         student_id = input("enter id of student you want to delete : ")
         del_data(student_id)
+
+    # updating data
+    if choice == "update":
+        read_data()
+        valid_fields = ["name", "email", "age", "subject", "fee"]
+        field = None
+
+        while field not in valid_fields:
+            field = (
+                input(f"enter field from {valid_fields} you want to update : ")
+                .strip()
+                .lower()
+            )
+        id = input("enter id of student to update : ")
+        new_value = input("enter new value : ")
+
+        update_data(id, field, new_value)
+        read_data()
