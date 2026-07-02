@@ -70,6 +70,8 @@ print(blog_post.get("rating"))      - ✅ returns None safely
 
 print(blog_post.get("rating", 0))   - ✅ returns 0 as default
 
+sorted(dictionary_name.items())     - to sort dictionary by keys
+
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
