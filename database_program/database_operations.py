@@ -54,7 +54,7 @@ def del_data(student_id):
     if cursor.rowcount > 0:
         print(f"student with id {student_id} deleted successfully")
     else:
-        print(f"student with id {student_id} not found in table")
+        print(f"student with id {student_id} not found")
 
 
 # function to update data
@@ -122,9 +122,7 @@ while True:
 
         while field not in valid_fields:
             field = (
-                input(f"enter field from {valid_fields} you want to update : ")
-                .strip()
-                .lower()
+                input(f"enter field from {valid_fields} you want to update : ").strip().lower()
             )
         id = input("enter id of student to update : ")
         new_value = input("enter new value : ")
