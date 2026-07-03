@@ -42,7 +42,8 @@ for items in sub_marks:
     for subject, marks in items.items():
         sub_total_marks[subject] = sub_total_marks.get(subject, 0) + marks
 
-marks_sub = {value:key for key,value in sub_total_marks.items()}
-marks, subject = sorted(marks_sub.items())[-1]  
+# marks_sub = {value:key for key,value in sub_total_marks.items()}
+# marks, subject = sorted(marks_sub.items())[-1]  
+subject, marks = max(sub_total_marks.items(), key= lambda item:item[1] )
 
-print(f"highest marks is {marks} for subject {subject}")
+print(f"highest marks is {marks} in subject {subject}")

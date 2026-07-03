@@ -35,7 +35,11 @@ student_info = [
     },
 ]
 
-students = {sum(student.get("marks").values()):student.get("name") for student in student_info}
-marks, name = sorted(students.items())[-1]
+# students = {sum(student.get("marks").values()):student.get("name") for student in student_info}
+# marks, name = sorted(students.items())[-1]  // keys must be unique so if two students have same marks, last on will override the first one
+
+students = {student.get("name"):sum(student.get("marks").values()) for student in student_info}
+marks, name = max(students.items(), key= lambda item: item[1])
 
 print(f"Student with highest marks {marks} is {name}")
+
