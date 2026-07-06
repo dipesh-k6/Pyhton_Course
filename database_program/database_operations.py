@@ -87,6 +87,7 @@ while True:
 
     # exiting the system
     if choice == "exit":
+        conn.close()
         sys.exit(0)
 
     # inserting value in table
