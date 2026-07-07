@@ -1,4 +1,4 @@
-**Setup**
+# Setup
 
 
 
@@ -16,7 +16,7 @@ git config --list                         # see all settings
 
 
 
-**Starting repo**
+# Starting repo
 
 
 
@@ -32,7 +32,7 @@ git remote -v               # verify remote connection
 
 
 
-**Workflow**
+# Workflow
 
 
 
@@ -54,7 +54,7 @@ git push -u origin main     # first push (sets default)
 
 
 
-**History**
+# History
 
 
 
@@ -68,7 +68,7 @@ git log --oneline           # compact version
 
 
 
-**Undo things**
+# Undo things
 
 
 
@@ -84,7 +84,7 @@ git commit --amend -m "msg" # fix last commit message
 
 
 
-**Branches**
+# Branches
 
 
 
@@ -112,7 +112,7 @@ git merge branchname        # merge branch into current
 
 
 
-**SSH**
+# SSH
 
 
 

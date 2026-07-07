@@ -1,35 +1,35 @@
-**#passing values to function**
+# passing values to function
 
-def calculate_area(width, height):
+   def calculate_area(width, height):
 
-   result = width * height
+      result = width * height
 
-   return result
+      return result
 
 
 
-print(f"area = {calculate_area(5, 10)}")
+   print(f"area = {calculate_area(5, 10)}")
 
 
 ----------------------------------------------------------------------------------------------
 
 
 
-**#default values in function**
+# default values in function
 
-you can specify default value to parameter and can change according to need
-
-
-
-def calculate_area(width, height = 10):
-
-   return width * height
+   you can specify default value to parameter and can change according to need
 
 
 
-print(f"area = {calculate_area(5)}")
+   def calculate_area(width, height = 10):
 
-print(f"area = {calculate_area(5, 20)}")
+      return width * height
+
+
+
+   print(f"area = {calculate_area(5)}")
+
+   print(f"area = {calculate_area(5, 20)}")
 
 
 
@@ -37,7 +37,7 @@ print(f"area = {calculate_area(5, 20)}")
 
 
 
-**#finding largest number in array**
+# finding largest number in array
 
 def find_max(numbers):                   - no need to mention type, python automatically handles it at runtime , optional for readability: def find_max(numbers: list) -> int:
 

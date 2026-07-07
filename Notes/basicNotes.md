@@ -1,30 +1,30 @@
-**#concatenation**
+# concatenation
 
-age = 25
+   age = 25
 
-print("My age is " + age)
-
-
-
-* cannot concatenate two different data types like this
+   print("My age is " + age)
 
 
 
-\--solution:
-
-age = 25
-
-print("My age is " + str(age))
+   * cannot concatenate two different data types like this
 
 
 
-or better
+   \--solution:
+
+   age = 25
+
+   print("My age is " + str(age))
 
 
 
-age = 25
+   or better
 
-print(f"My age is {age}")
+
+
+   age = 25
+
+   print(f"My age is {age}")
 
 
 
@@ -32,7 +32,7 @@ print(f"My age is {age}")
 
 
 
-**#Identation**
+# Identation
 
 * (tab)
 
@@ -42,28 +42,28 @@ print(f"My age is {age}")
 
 
 
-**#shift from js to python**
+# shift from js to python
 
-* no curly braces {} and less small brackets () , colon : and identation takes place
-* no semicolon
-
-
-
-\#**Range**
-
-for number in range(5):
-
-   print(number)
+   * no curly braces {} and less small brackets () , colon : and identation takes place
+   * no semicolon
 
 
 
-* this gives 0 to 4
+# Range
+
+   for number in range(5):
+
+      print(number)
 
 
 
-range(1, 6)     output: 1, 2, 3, 4, 5
+   * this gives 0 to 4
 
-range(0, 10, 2) output: 0, 2, 4, 6, 8  (step by 2)
+
+
+   range(1, 6)     output: 1, 2, 3, 4, 5
+
+   range(0, 10, 2) output: 0, 2, 4, 6, 8  (step by 2)
 
 
 
@@ -71,25 +71,25 @@ range(0, 10, 2) output: 0, 2, 4, 6, 8  (step by 2)
 
 
 
-**#List**
+# List
 
-fruits = \["apple", "banana", "mango"]
-
-
-
-* fruits\[0]  result: first item
-* fruits\[-1] result: last item
-* fruits.append("orange") result: puts item on last
-* fruits.remove("banana") result: removes by name
-* print(len(fruits)) ps: there is no such thing as fruits.len()
+   fruits = \["apple", "banana", "mango"]
 
 
 
-**-- when a function returns nothing, it returns None automatically**
+   * fruits\[0]  result: first item
+   * fruits\[-1] result: last item
+   * fruits.append("orange") result: puts item on last
+   * fruits.remove("banana") result: removes by name
+   * print(len(fruits)) ps: there is no such thing as fruits.len()
 
-* example:
 
-print(fruits.append("pineapple")) result:None cause it returns nothing but does its job
+
+# when a function returns nothing, it returns None automatically
+
+   * example:
+
+   print(fruits.append("pineapple")) result:None cause it returns nothing but does its job
 
 
 
