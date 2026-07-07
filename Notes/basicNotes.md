@@ -28,7 +28,7 @@
 
 
 
-\----------------------------------------
+----------------------------------------
 
 
 
@@ -38,7 +38,7 @@
 
 
 
-\----------------------------------------
+----------------------------------------
 
 
 
@@ -47,7 +47,7 @@
    * no curly braces {} and less small brackets () , colon : and identation takes place
    * no semicolon
 
-
+-----------------------------------------
 
 # Range
 
@@ -67,7 +67,7 @@
 
 
 
-\----------------------------------------
+------------------------------------------------
 
 
 
@@ -83,7 +83,7 @@
    * fruits.remove("banana") result: removes by name
    * print(len(fruits)) ps: there is no such thing as fruits.len()
 
-
+---------------------------------------------------
 
 # when a function returns nothing, it returns None automatically
 
