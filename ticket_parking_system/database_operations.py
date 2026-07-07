@@ -1,5 +1,5 @@
 import sqlite3, sys, math
-from datetime import datetime,timezone
+from datetime import datetime
 
 conn = sqlite3.connect("ticket_parking.db")
 cursor = conn.cursor()
@@ -8,12 +8,13 @@ cursor = conn.cursor()
 # function to insert data
 def insert_data(vehicle_num, name, address, vehicle_type):
     try:
+        entry_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S") #converting to string in iso format
         cursor.execute(
             """
-                insert into customer_data(vehicle_num, name, address, vehicle_type)
-                values (?,?,?,?)
+                insert into customer_data(vehicle_num, name, address, vehicle_type, entry_time)
+                values (?,?,?,?,?)
             """,
-            (vehicle_num, name, address, vehicle_type),
+            (vehicle_num, name, address, vehicle_type, entry_time),
         )
         conn.commit()
         print("data inserted successfully\n")
@@ -44,32 +45,61 @@ def del_data(vehicle_num):
     conn.commit()
 
     if cursor.rowcount > 0:
-        print(f"{vehicle_num} deleted successfully")
+        print(f"vehicle number {vehicle_num} deleted successfully")
     else:
-        print("vehicle with number {vehicle_num} not found")
+        print(f"vehicle with number {vehicle_num} not found")
 
 
 # function to calculate price
-def calculate_price(vehicle_num):
-    price_per_hour = {2: 10, 4: 20}
-    cursor.execute("select * from customer_data where vehicle_num = ?", (vehicle_num,))
-    customer = cursor.fetchone()
-    vehicle_type = customer[3]
+def generate_receipt(vehicle_num):
+    try:
+        price_per_hour = {2: 10, 4: 20}
+        cursor.execute("select * from customer_data where vehicle_num = ?", (vehicle_num,))
+        customer = cursor.fetchone()
 
-    entry_time_str = customer[4] #sql gives utc time in string
-    entry_time = datetime.strptime(entry_time_str, "%Y-%m-%d %H:%M:%S") #converting to datetime object    
-    entry_time = entry_time.replace(tzinfo=timezone.utc) #to tell python its utc
-    current_time = datetime.now(timezone.utc)
+        if not customer:
+            print("vehicle not found")
+            return
+        
+        vehicle_type = customer[3]
+        entry_time_str = customer[4]
+        entry_time = datetime.fromisoformat(entry_time_str)
+        exit_time = datetime.now()
 
-    elapsed_seconds = (current_time - entry_time).total_seconds()
-    elapsed_hours = elapsed_seconds/3600
-    billable_hours = math.ceil(elapsed_hours)
+        # if timestamp created in and coming from sqlite
+            # entry_time_str = customer[4] #sql gives utc time in string
+            # entry_time = datetime.strptime(entry_time_str, "%Y-%m-%d %H:%M:%S") #converting to datetime object
+            # entry_time = entry_time.replace(tzinfo=timezone.utc) #to tell python its utc
+            # exit_time = datetime.now(timezone.utc)
 
-    rate = price_per_hour.get(vehicle_type, 0)
-    price = billable_hours  * rate
+        elapsed_seconds = (exit_time - entry_time).total_seconds()
+        elapsed_hours = elapsed_seconds / 3600
+        billable_hours = math.ceil(elapsed_hours)
 
-    print(f"price = rs{price}")
+        rate = price_per_hour.get(vehicle_type, 0)
+        price = billable_hours * rate
+        # print(f"price = rs{price}")
 
+        # creating receipt_file
+        filename = f"receipts/receipt_{vehicle_num}.txt"
+
+        with open(filename, "w") as file:
+            file.write("=" * 15 + "YOUR BILL=" + "=" * 15)
+            file.write(f"\nVehicle Number: {vehicle_num}\n")
+            file.write(f"Name: {customer[1]}\n")
+            file.write(f"Address: {customer[2]}\n")
+            file.write(f"Entry time: {entry_time.strftime("%d/%m/%Y %I:%M:%S %p")}\n")
+            file.write(f"Exit time: {exit_time.strftime("%d/%m/%Y %I:%M:%S %p")}\n")
+            file.write(f"Vehicle type: {vehicle_type}Wheeler\n")
+            file.write("=" * 40 + "\n")
+            file.write(f"\nTotal price: Rs {price}\n")
+
+        print(f"receipt generated: {filename}")
+        del_data(vehicle_num)
+    
+    except Exception as e:
+        print(f"Error generating receipt: {e}")
+        print(f"Record not deleted - try again ")
 
 
 while True:
@@ -108,4 +138,4 @@ while True:
     if choice == "calculate":
         read_data()
         vehicle_num = input("enter vehicle number: ")
-        calculate_price(vehicle_num)
+        generate_receipt(vehicle_num)
