@@ -1,2 +1,4 @@
 *.db
 venv
+.vscode
+try.py
