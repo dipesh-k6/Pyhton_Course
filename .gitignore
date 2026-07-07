@@ -1,4 +1,4 @@
 *.db
 venv
 .vscode
-try.py
+receipts/
