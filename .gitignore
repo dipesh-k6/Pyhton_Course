@@ -1,6 +1,7 @@
 *.db
 venv
 .vscode
+*.xlsx
 ticket_parking_system/receipts/*
 !ticket_parking_system/receipts/.gitkeep
 
