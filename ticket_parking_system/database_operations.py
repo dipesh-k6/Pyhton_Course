@@ -1,4 +1,4 @@
-import sqlite3, sys, math
+import sqlite3, sys, os, math
 from datetime import datetime
 
 conn = sqlite3.connect("ticket_parking.db")
@@ -79,6 +79,10 @@ def generate_receipt(vehicle_num):
         rate = price_per_hour.get(vehicle_type, 0)
         price = billable_hours * rate
         # print(f"price = rs{price}")
+
+        #to create a directory if it dont exist
+        if not os.path.isdir("receipts"):
+            os.mkdir("receipts")
 
         # creating receipt_file
         filename = f"receipts/receipt_{vehicle_num}.txt"
