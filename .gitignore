@@ -2,6 +2,7 @@
 venv
 .vscode
 *.xlsx
+ticket_parking_system/old_receipts/*
 ticket_parking_system/receipts/*
 !ticket_parking_system/receipts/.gitkeep
 
